@@ -1,9 +1,10 @@
 pipeline {
-    agent { docker 'python:3.5.3' }
+    agent any //{ docker 'python:3.5.3' }
     stages {
         stage('Build') {
             steps {
                 sh 'echo "Build docker images for project."'
+                sh 'whoami'
                 // sh 'docker-compose up'
             }
         }
