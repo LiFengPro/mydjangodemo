@@ -10,5 +10,17 @@ pipeline {
                 sh 'docker-compose -p djangodemo build'
             }
         }
+        stage('Test') {
+            agent { docker 'djangodemo_web' }
+            steps {
+                sh 'py.test --junit-xml=results.xml tests/''
+            }
+        }
+        stage('Test') {
+            agent {docker 'djangodemo_web' }
+            steps {
+                sh 'python manage.py runserver 0.0.0.0:8000'
+            }
+        }
     }
 }
