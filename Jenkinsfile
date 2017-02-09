@@ -17,10 +17,9 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent {docker 'djangodemo_web' }
             steps {
                 sh 'echo "Deploying"'
-
+                sh 'docker-compose -p djangodemo up'
             }
         }
     }
