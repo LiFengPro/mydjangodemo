@@ -4,10 +4,10 @@
      image: postgres
    web:
      build: .
-     command: sh setup_production.sh
      volumes:
        - .:/code
      ports:
        - "8000:8000"
      depends_on:
        - db
+     command: ["./wait-for-it.sh", "db:5432", "--", "sh", "setup_production.sh"]
