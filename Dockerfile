@@ -3,3 +3,4 @@ RUN mkdir /code
 WORKDIR /code
 Add . /code/
 RUN pip install -r requirements.txt
+CMD ["gunicorn", "mysite.wsgi"]

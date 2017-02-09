@@ -6,12 +6,11 @@ pipeline {
                 sh 'echo "Build docker images for project."'
                 sh 'whoami'
                 sh 'docker --version'
-                sh 'docker image ls'
-                sh 'docker-compose -p djangodemo build'
+                sh 'docker build -t lifeng2/mydjango .'
             }
         }
         stage('Test') {
-            agent { docker 'djangodemo_web' }
+            agent { docker 'lifeng2/mydjango' }
             steps {
                 sh 'py.test --junit-xml=results.xml /code/tests/'
             }
@@ -19,6 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo "Deploying"'
+                sh 'docker-compose -p djangodemo build'
                 sh 'docker-compose up'
             }
         }

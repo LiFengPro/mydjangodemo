@@ -3,6 +3,7 @@
    db:
      image: postgres
    web:
+     image: lifeng2/mydjango
      build: .
      volumes:
        - .:/code
