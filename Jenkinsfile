@@ -14,14 +14,15 @@ pipeline {
             agent { docker 'djangodemo_web' }
             steps {
                 sh 'cd /code'
-                sh 'py.test --junit-xml=results.xml tests/'
+                sh 'pwd'
+                sh 'py.test --junit-xml=results.xml /code/tests/'
             }
         }
         stage('Deploy') {
             agent {docker 'djangodemo_web' }
             steps {
                 sh 'cd /code'
-                sh 'python manage.py runserver 0.0.0.0:8000'
+                sh 'python /code/manage.py runserver 0.0.0.0:8000'
             }
         }
     }
