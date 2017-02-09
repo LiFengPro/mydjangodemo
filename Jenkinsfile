@@ -7,12 +7,7 @@ pipeline {
                 sh 'whoami'
                 sh 'docker --version'
                 sh 'docker image ls'
-                // sh 'docker-compose up'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'make publish'
+                sh 'docker-compose up'
             }
         }
     }
