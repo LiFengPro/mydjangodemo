@@ -5,12 +5,9 @@ pipeline {
             steps {
                 sh 'echo "Build docker images for project."'
                 sh 'whoami'
+                sh 'docker --version'
+                sh 'docker image ls'
                 // sh 'docker-compose up'
-            }
-        }
-        stage('Test'){
-            steps {
-                sh 'make check'
             }
         }
         stage('Deploy') {
