@@ -7,7 +7,7 @@ pipeline {
                 sh 'whoami'
                 sh 'docker --version'
                 sh 'docker image ls'
-                sh 'docker-compose up'
+                sh 'docker-compose build'
             }
         }
     }
