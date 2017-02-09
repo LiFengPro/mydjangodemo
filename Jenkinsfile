@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             agent { docker 'djangodemo_web' }
             steps {
-                sh 'py.test --junit-xml=results.xml tests/''
+                sh 'py.test --junit-xml=results.xml tests/'
             }
         }
         stage('Test') {
