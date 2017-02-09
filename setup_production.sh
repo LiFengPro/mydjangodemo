@@ -1,4 +1,4 @@
 #!/bin/bash
 
 python manage.py migrate
-gunicorn mysite.wsgi
+/usr/local/bin/gunicorn mysite.wsgi
