@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh 'echo "Deploying"'
                 sh 'docker-compose -p djangodemo build'
-                sh 'docker-compose up'
+                sh 'docker-compose up -d'
             }
         }
     }
