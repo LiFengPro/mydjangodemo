@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'master' }
     stages {
         stage('Build') {
             steps {
@@ -21,24 +21,11 @@ pipeline {
                 }
             }
         }
+        stage('Test') {
+            agent { label 'slave1' }
+            steps {
+                sh 'echo "HELLO WORLD"'
+            }
+        }
     }
 }
-
-// specific , multiple slaves, artifacts, test reporting.
-// define ENV, conditions, loops
-// third party plugin
-
-// Running Jenkins on Docker/Kubernetes
-
-
-// third party plugin
-// https://github.com/jenkinsci/pipeline-plugin/blob/master/COMPATIBILITY.md
-
-// Test Reporting and artifacts
-// Attention Need to install Copy To Slave Plugin
-//    post {
-//        always {
-//            archive 'build/libs/**/*.jar'
-//            junit 'build/reports/**/*.xml'
-//        }
-//    }
