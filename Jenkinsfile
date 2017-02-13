@@ -35,7 +35,8 @@ pipeline {
                 sh 'echo "HELLO WORLD"'
                 echo env.FLAG
                 sh 'echo "$FLAG"'
-                scripts {
+
+                script {
                     for (int i = 0; i < browsers.size(); ++i) {
                         echo "Testing the ${browsers[i]} browser"
                     }
