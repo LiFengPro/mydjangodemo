@@ -18,8 +18,8 @@ pipeline {
     }
     post {
         always {
-            archive 'results.xml'
-            junit 'results.xml'
+            archive '*/results.xml'
+            junit '*/results.xml'
         }
     }
 }
