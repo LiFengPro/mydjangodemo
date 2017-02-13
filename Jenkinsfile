@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'master' }
+    environment {
+        FLAG = 'SomeEnv'
+    }
     stages {
         stage('Build') {
             steps {
@@ -30,6 +33,8 @@ pipeline {
             agent { label 'slave1' }
             steps {
                 sh 'echo "HELLO WORLD"'
+                echo env.FLAG
+                sh 'echo "$FLAG"'
             }
         }
     }
