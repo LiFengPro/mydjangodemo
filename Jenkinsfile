@@ -15,12 +15,26 @@ pipeline {
                 sh 'py.test --junit-xml=results.xml /code/tests/'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'echo "Deploying"'
-                sh 'docker-compose -p djangodemo build'
-                sh 'docker-compose up -d'
-            }
+    }
+    post {
+        always {
+            archieve 'results.xml'
+            junit 'results.xml'
         }
     }
 }
+
+// specific , multiple slaves, artifacts, test reporting.
+// define ENV, conditions, loops
+// third party plugin
+
+// Running Jenkins on Docker/Kubernetes
+
+
+// Test Reporting and artifacts
+//    post {
+//        always {
+//            archive 'build/libs/**/*.jar'
+//            junit 'build/reports/**/*.xml'
+//        }
+//    }
