@@ -21,7 +21,7 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('TestSlave') {
             agent { label 'slave1' }
             steps {
                 sh 'echo "HELLO WORLD"'
