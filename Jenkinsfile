@@ -35,6 +35,16 @@ pipeline {
                 sh 'echo "HELLO WORLD"'
                 echo env.FLAG
                 sh 'echo "$FLAG"'
+                scripts {
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                    if (env.BRANCH_NAME == 'master') {
+                        echo 'I only execute on the master branch'
+                    } else {
+                        echo 'I execute elsewhere'
+                    }
+                }
             }
         }
     }
