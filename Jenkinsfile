@@ -1,8 +1,8 @@
 pipeline {
-    agent none
+    agent { docker 'lifeng2/mydjango' }
     stages {
         stage('Test') {
-            agent { docker 'lifeng2/mydjango' }
+
             steps {
                 sh 'py.test --junit-xml=results.xml /code/tests/'
             }
