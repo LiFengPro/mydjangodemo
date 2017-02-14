@@ -1,26 +1,36 @@
- version: '2'
- services:
-   db:
-     image: postgres
+version: '3'
 
-   nginx:
-     image: nginx:latest
-     container_name: ng01
-     ports:
-       - "8000:8000"
-     volumes:
-       - ./config:/etc/nginx/conf.d
-       - .:/code
-     depends_on:
-       - web
+networks:
+    mydjangonet:
 
-   web:
-     image: lifeng2/mydjango
-     build: .
-     volumes:
-       - .:/code
-     depends_on:
-       - db
-     command: ["./wait-for-it.sh", "db:5432", "--", "sh", "setup_production.sh"]
-     expose:
-       - "8000"
+services:
+    db:
+        image: postgres
+        networks:
+            - mydjangonet
+
+
+    nginx:
+        image: nginx:latest
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./config:/etc/nginx/conf.d
+            - .:/code
+        depends_on:
+            - web
+        networks:
+            - mydjangonet
+
+    web:
+        image: lifeng2/mydjango
+        build: .
+        volumes:
+            - .:/code
+        depends_on:
+            - db
+        command: ["./wait-for-it.sh", "db:5432", "--", "sh", "setup_production.sh"]
+        expose:
+            - "8000"
+        networks:
+            - mydjangonet
