@@ -50,7 +50,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent { label 'master' }
             steps {
                 sh 'docker stack deploy -c docker-compose.yml mydjangostack'
             }
